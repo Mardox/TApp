@@ -7,25 +7,36 @@ import {Service} from '../../providers/service/service';
   templateUrl: 'build/pages/home/home.html'
 })
 export class HomePage {
+  items = [];
   constructor(nav:NavController, service:Service) {
     // this.item = 'test is viable';
     this.items = [];
     this.nav = nav;
+    // this.nextItem = '';
 
     this.service = service;
 
     this.service.getData().then((todos)=>{
       this.items = JSON.parse(todos) || [];
+      // this.nextItem = this.items[0];
     });
   }
 
-  nextPage(){
+  newItemPage(){
     this.nav.push(NewItem, {items: this.items});
+  }
+
+  doneItem(){
+    this.service.remove(this.items[0]).then((todos) => {
+      this.items = JSON.parse(todos) || [];
+      // this.nextItem = this.items[0];
+    });
   }
 
   deleteItem(item){
     this.service.remove(item).then((todos) => {
       this.items = JSON.parse(todos) || [];
+      // this.nextItem = this.items[0];
     });
   }
 }
