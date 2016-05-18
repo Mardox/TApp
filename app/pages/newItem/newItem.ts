@@ -13,6 +13,10 @@ export class NewItem {
     this.service = service;
   }
 
+  focusInput(input) {
+    input.setFocus();
+  }
+
   save(){
     this.navParams.data.items.push(this.createdItem);
     this.service.save(this.createdItem);

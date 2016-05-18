@@ -33,6 +33,12 @@ export class HomePage {
     });
   }
 
+  deferItem(){
+    this.service.deferItem().then((todos) => {
+      this.items = JSON.parse(todos) || [];
+    });
+  }
+
   deleteItem(item){
     this.service.remove(item).then((todos) => {
       this.items = JSON.parse(todos) || [];

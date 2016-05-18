@@ -6,7 +6,7 @@
 
 <ion-content class="home">
   <ion-item>
-    <ion-input placeholder="Add a new task" [(ngModel)]="createdItem">
+    <ion-input #input placeholder="Add a new task" [(ngModel)]="createdItem">
     </ion-input>
   </ion-item>
   <button fab secondary fab-bottom fab-center (click)="save();">
