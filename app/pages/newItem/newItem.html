@@ -1,6 +1,6 @@
-<ion-navbar *navbar>
+<ion-navbar secondary *navbar>
   <ion-title>
-    New Item
+    Add a Task
   </ion-title>
 </ion-navbar>
 
@@ -9,5 +9,7 @@
     <ion-input placeholder="Add a new task" [(ngModel)]="createdItem">
     </ion-input>
   </ion-item>
-  <button (click)="save();"> Save </button>
+  <button fab secondary fab-bottom fab-center (click)="save();">
+   <ion-icon name="checkmark" is-active="false" ></ion-icon>
+ </button>
 </ion-content>
