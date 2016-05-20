@@ -1,20 +1,18 @@
 import {Page,NavController,NavParams} from 'ionic-angular';
-// import {TodoService} from '../data/todoService';
 import {Service} from '../../providers/service/service';
 
 @Page({
   templateUrl: 'build/pages/newItem/newItem.html'
 })
 export class NewItem {
+
   createdItem;
-  constructor(nav:NavController, navParams:NavParams, service:Service) {
+
+  constructor(public nav:NavController, public navParams:NavParams, public service:Service) {
     this.nav = nav;
     this.navParams = navParams;
     this.service = service;
-  }
 
-  focusInput(input) {
-    input.setFocus();
   }
 
   save(){

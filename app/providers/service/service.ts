@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class Service {
   data: any = null;
+  storage;
 
   constructor() {
     this.storage = new Storage(SqlStorage, {name: 'todoStorage'});

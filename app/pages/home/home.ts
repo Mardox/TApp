@@ -1,6 +1,5 @@
 import {Page,NavController,NavParams} from 'ionic-angular';
 import {NewItem} from '../newItem/newItem';
-// import {TodoService} from '../data/todoService';
 import {Service} from '../../providers/service/service';
 
 @Page({
@@ -8,7 +7,10 @@ import {Service} from '../../providers/service/service';
 })
 export class HomePage {
   items = [];
-  constructor(nav:NavController, service:Service) {
+  createdItem;
+  new;
+
+  constructor(public nav:NavController, public service:Service) {
     // this.item = 'test is viable';
     this.items = [];
     this.nav = nav;
@@ -16,6 +18,11 @@ export class HomePage {
 
     this.service = service;
 
+    this.loadData();
+
+  }
+
+  loadData(){
     this.service.getData().then((todos)=>{
       this.items = JSON.parse(todos) || [];
       // this.nextItem = this.items[0];
@@ -23,13 +30,13 @@ export class HomePage {
   }
 
   newItemPage(){
-    this.nav.push(NewItem, {items: this.items});
+
+    //this.nav.push(NewItem, {items: this.items});
   }
 
   doneItem(){
     this.service.remove(this.items[0]).then((todos) => {
       this.items = JSON.parse(todos) || [];
-      // this.nextItem = this.items[0];
     });
   }
 
@@ -39,10 +46,23 @@ export class HomePage {
     });
   }
 
-  deleteItem(item){
-    this.service.remove(item).then((todos) => {
-      this.items = JSON.parse(todos) || [];
-      // this.nextItem = this.items[0];
-    });
+  addItem(){
+    if (this.new == true){
+      this.new = false;
+      this.service.save(this.createdItem);
+    }
+    else{
+      this.new = true;
+    }
+    this.loadData();
   }
+
+
+  // deleteItem(item){
+  //   this.service.remove(item).then((todos) => {
+  //     this.items = JSON.parse(todos) || [];
+  //   });
+  // }
+
+
 }
