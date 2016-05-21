@@ -1,7 +1,8 @@
 import {App, Platform} from 'ionic-angular';
-import {StatusBar} from 'ionic-native';
+import {StatusBar, Keyboard} from 'ionic-native';
 import {HomePage} from './pages/home/home';
 import {NewItem} from './pages/newItem/newItem';
+import {IntroPage} from './pages/intro/intro';
 import {Service} from './providers/service/service';
 
 @App({
@@ -17,6 +18,8 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
+      // StatusBar.styleBlackTranslucent();
+      // StatusBar.styleBlackOpaque();
     });
   }
 }

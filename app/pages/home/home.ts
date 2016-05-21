@@ -1,5 +1,6 @@
 import {Page,NavController,NavParams} from 'ionic-angular';
 import {NewItem} from '../newItem/newItem';
+import {IntroPage} from '../intro/intro';
 import {Service} from '../../providers/service/service';
 
 @Page({
@@ -18,7 +19,12 @@ export class HomePage {
 
     this.service = service;
 
+    // this.nav.setRoot(IntroPage);
+
     this.loadData();
+
+    this.nav.push(IntroPage);
+
 
   }
 
@@ -49,7 +55,10 @@ export class HomePage {
   addItem(){
     if (this.new == true){
       this.new = false;
-      this.service.save(this.createdItem);
+      if (this.createdItem){
+        this.service.save(this.createdItem);
+        this.createdItem ='';
+      }
     }
     else{
       this.new = true;

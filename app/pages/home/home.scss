@@ -1,20 +1,20 @@
 .home {
-
-}
-
-ion-content{
-  background-color: #49aeff;
+  //
+  // background-color: #49aeff;
+  background-color: rgba(1, 33, 46, 1);
   color: #fff;
-}
 
-h1{
-  font-size: 60px;
-}
+  h1{
+    font-size: 60px;
+  }
 
-.center{
-  text-align: center;
-}
+  .center{
+    text-align: center;
+  }
 
-ion-row{
-  // height: 100%;
+  ion-row{
+    height: 80%;
+  }
+
+
 }
