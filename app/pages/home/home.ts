@@ -8,12 +8,13 @@ import {Service} from '../../providers/service/service';
 })
 export class HomePage {
   items = [];
-  createdItem;
+  createdItem = '';
   new;
+
 
   constructor(public nav:NavController, public service:Service) {
     // this.item = 'test is viable';
-    this.items = [];
+    // this.items = [];
     this.nav = nav;
     // this.nextItem = '';
 
@@ -21,10 +22,39 @@ export class HomePage {
 
     // this.nav.setRoot(IntroPage);
 
+    //show the intro of the App
+    this.showIntro();
+
+    //load the tasks data
     this.loadData();
 
-    this.nav.push(IntroPage);
 
+  }
+
+  showIntro(){
+
+    var firstTime = localStorage.getItem('firstTime');
+    if (firstTime === null) {
+      console.log('was null setting to false');
+      firstTime = 'true';
+    }
+
+    //adding demo tasks and the intro pages
+    if (firstTime == 'true'){
+
+      this.createdItem = "this is a task. Press the green button to complete it";
+      this.addItem();
+      this.createdItem = "this is a hard task. Do it later by pressing the yello button";
+      this.addItem();
+      this.createdItem = "this is another task. Do it now";
+      this.addItem();
+
+      localStorage.setItem('firstTime', 'fasle');
+
+      this.loadData();
+
+      this.nav.push(IntroPage);
+    }
 
   }
 
@@ -53,7 +83,7 @@ export class HomePage {
   }
 
   addItem(){
-    if (this.new == true){
+    if (this.createdItem){
       this.new = false;
       if (this.createdItem){
         this.service.save(this.createdItem);

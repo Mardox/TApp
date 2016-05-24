@@ -20,6 +20,15 @@ export class Service {
 
     this.storage.get('todoStorage').then((todos) => {
       this.data = JSON.parse(todos);
+
+      //reset the database if the first value is null
+      // if (!this.data[0]){
+      //   this.data = [];
+      //   let newData = JSON.stringify(this.data);
+      //   this.storage.set('todoStorage', newData);
+      // }
+
+
     });
   }
 
@@ -29,9 +38,9 @@ export class Service {
 
 
   save(item){
+
     if(!this.data){
       this.data = [item];
-
       let newData = JSON.stringify(this.data);
       this.storage.set('todoStorage', newData);
     }
@@ -40,6 +49,12 @@ export class Service {
       let newData = JSON.stringify(this.data);
       this.storage.set('todoStorage', newData);
     }
+
+    this.storage.get('todoStorage').then((todos) => {
+      this.data = JSON.parse(todos);
+    });
+
+
   }
 
   deferItem(){

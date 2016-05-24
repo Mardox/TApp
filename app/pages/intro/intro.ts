@@ -14,18 +14,18 @@ export class IntroPage {
 
   slides = [
      {
-       title: "Welcome to the Docs!",
-       description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
+       title: "Welcome to the Do It!",
+       description: "The <b>Do It App</b> helps you to be way more productive and focus.",
        image: "img/ica-slidebox-img-1.png",
      },
      {
-       title: "What is Ionic?",
-       description: "<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.",
+       title: "Just Add Your Tasks",
+       description: "<b>Add Your Taks</b> and stay focused on one task at the time.",
        image: "img/ica-slidebox-img-2.png",
      },
      {
-       title: "What is Ionic Platform?",
-       description: "The <b>Ionic Platform</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
+       title: "Can't Finish a Task?",
+       description: "Just press the <b>Delay Task</b> button and it goes back to the end of the queue.",
        image: "img/ica-slidebox-img-3.png",
      }
    ];

@@ -1,6 +1,7 @@
 <ion-navbar *navbar primary>
   <ion-title>
-    <h3 class="center">{{items.length}} Remaining</h3>
+    <h3 class="center" [hidden]="new || !items[0]">{{items.length}} Remaining</h3>
+    <h3 class="center" [hidden]="new || items[0]">All Done</h3>
   </ion-title>
 </ion-navbar>
 
@@ -12,12 +13,13 @@
   <ion-row center>
       <ion-col>
           <!-- <h3 class="center">{{items.length}} Remaining</h3> -->
-          <b><h1 class="center" [hidden]="!items[0]" [hidden]="new">{{items[0]}}</h1></b>
+          <b><h1 class="center" [hidden]="new || !items[0]" [hidden]="new">{{items[0]}}</h1></b>
           <!-- <h2 class="center" [hidden]="!items[0]">DESCRIPTION PLACEHOLDER</h2> -->
-          <h1 class="center" [hidden]="new || items[0]">Good Job!</h1>
+          <h1 class="center" [hidden]="new || items[0]">NO MORE TASKS</h1>
+          <h3 class="center" [hidden]="new || items[0]">Add One Below</h3>
       </ion-col>
   </ion-row>
-  
+
   <!-- <ion-list>
     <ion-item-sliding *ngFor="#item of items">
       <ion-item>
@@ -38,11 +40,11 @@
     </ion-card-content>
   </ion-card> -->
 
-  <button [hidden]="!items[0]" [hidden]="new" warning fab fab-bottom fab-left (click)="deferItem();">
+  <button [hidden]="!items[0] || new" warning fab fab-bottom fab-left (click)="deferItem();">
    <ion-icon name="time" is-active="true" ></ion-icon>
   </button>
 
-  <button [hidden]="!items[0]" [hidden]="new" fab secondary fab-bottom fab-center (click)="doneItem();">
+  <button [hidden]="!items[0] || new" fab secondary fab-bottom fab-center (click)="doneItem();">
    <ion-icon name="checkmark" is-active="false" ></ion-icon>
  </button>
 
