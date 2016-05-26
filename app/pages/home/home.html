@@ -5,7 +5,7 @@
     <h3 class="center" [hidden]="new || items[0]">All Done</h3>
   </ion-title>
   <ion-buttons end>
-    <button (click)="listView();">
+    <button (click)="listView();" [hidden]="new">
       <ion-icon name="list"></ion-icon>
     </button>
   </ion-buttons>
@@ -33,8 +33,8 @@
     </ion-item-sliding>
 
     <ion-item-sliding [hidden]="!new" *ngFor="let newItem of newItems">
-      <ion-item (click)="selectItem(newItem);">
-        {{newItem}}
+      <ion-item  (click)="selectItem(newItem);">
+        <span danger >Just Added:</span> {{newItem}}
       </ion-item>
       <ion-item-options>
         <button danger (click)="doneItem(newItem)"><ion-icon name="trash"></ion-icon> Delete </button>
