@@ -57,7 +57,22 @@ export class Service {
 
   }
 
-  deferItem(){
+
+  selectItem(item){
+    for (var i=0; i < this.data.length; i++){
+      if(item == this.data[i]){
+        for (var j = 0; j < i; j++){
+          this.data.push(this.data.shift());
+        }
+        break;
+      }
+    }
+    let newData = JSON.stringify(this.data);
+    this.storage.set('todoStorage', newData);
+    return this.getData();
+  }
+
+  deferItem(item){
     this.data.push(this.data.shift());
     let newData = JSON.stringify(this.data);
     this.storage.set('todoStorage', newData);

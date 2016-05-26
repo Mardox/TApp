@@ -1,5 +1,5 @@
 import {App, Platform} from 'ionic-angular';
-import {StatusBar, Keyboard} from 'ionic-native';
+import {StatusBar} from 'ionic-native';
 import {HomePage} from './pages/home/home';
 import {NewItem} from './pages/newItem/newItem';
 import {IntroPage} from './pages/intro/intro';

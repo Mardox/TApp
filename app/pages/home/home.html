@@ -3,22 +3,44 @@
     <h3 class="center" [hidden]="new || !items[0]">{{items.length}} Remaining</h3>
     <h3 class="center" [hidden]="new || items[0]">All Done</h3>
   </ion-title>
+  <ion-buttons end>
+    <button (click)="listView();">
+      <ion-icon name="list"></ion-icon>
+    </button>
+  </ion-buttons>
 </ion-navbar>
 
-<ion-content padding class="home">
-  <ion-item [hidden]="!new">
-    <ion-input placeholder="Add a new task" [(ngModel)]="createdItem">
+<ion-content class="home">
+  <ion-item [hidden]="list">
+    <ion-input placeholder="Tap Here To Add a Task"
+      (keyup.enter)="addItem();"
+      (blur)="newItemBlur();"
+      (focus)="newItemFocus();"
+       [(ngModel)]="createdItem">
     </ion-input>
+    <!-- (blur)="addItem();"
+    (click)="newItemFocus();" -->
   </ion-item>
-  <ion-row center>
+  <ion-list [hidden]="!list">
+    <ion-item-sliding *ngFor="let item of items">
+      <ion-item (click)="selectItem(item);">
+        {{item}}
+      </ion-item>
+      <ion-item-options>
+        <button danger (click)="doneItem(item)"><ion-icon name="trash"></ion-icon> Delete </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-row padding center [hidden]="list">
       <ion-col>
           <!-- <h3 class="center">{{items.length}} Remaining</h3> -->
           <b><h1 class="center" [hidden]="new || !items[0]" [hidden]="new">{{items[0]}}</h1></b>
           <!-- <h2 class="center" [hidden]="!items[0]">DESCRIPTION PLACEHOLDER</h2> -->
           <h1 class="center" [hidden]="new || items[0]">NO MORE TASKS</h1>
-          <h3 class="center" [hidden]="new || items[0]">Add One Below</h3>
+          <h3 class="center" [hidden]="new || items[0]">Add One Above</h3>
       </ion-col>
   </ion-row>
+
 
   <!-- <ion-list>
     <ion-item-sliding *ngFor="#item of items">
@@ -40,20 +62,20 @@
     </ion-card-content>
   </ion-card> -->
 
-  <button [hidden]="!items[0] || new" warning fab fab-bottom fab-left (click)="deferItem();">
+  <button [hidden]="list || !items[0] || new" danger fab fab-bottom fab-left  (click)="deferItem(items[0]);">
    <ion-icon name="time" is-active="true" ></ion-icon>
   </button>
 
-  <button [hidden]="!items[0] || new" fab secondary fab-bottom fab-center (click)="doneItem();">
+  <button [hidden]="list || !items[0] || new" fab secondary fab-bottom fab-right (click)="doneItem(items[0]);">
    <ion-icon name="checkmark" is-active="false" ></ion-icon>
  </button>
 
-  <button [hidden]="new" fab danger fab-bottom fab-right (click)="addItem();">
+  <!-- <button [hidden]="new" fab danger fab-bottom fab-right (click)="addItem();">
     <ion-icon name="add" is-active="false"></ion-icon>
-  </button>
+  </button> -->
 
-  <button [hidden]="!new" fab secondary fab-bottom fab-right (click)="addItem();">
+  <!-- <button [hidden]="!new" fab secondary fab-bottom fab-right (click)="addItem();">
     <ion-icon name="checkmark" is-active="false"></ion-icon>
-  </button>
+  </button> -->
 
 </ion-content>
