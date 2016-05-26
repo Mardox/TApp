@@ -10,6 +10,7 @@ import {Service} from '../../providers/service/service';
 })
 export class HomePage {
   items = [];
+  newItems = [];
   createdItem = '';
   new;
   list;
@@ -42,6 +43,8 @@ export class HomePage {
 
   newItemBlur(){
     this.new = false;
+    this.newItems = [];
+    Keyboard.close();
   }
 
   listView(){
@@ -115,18 +118,19 @@ export class HomePage {
 
   addItem(){
     if (this.createdItem){
-      this.new = false;
       if (this.createdItem){
         this.service.save(this.createdItem);
+        this.newItems.push(this.createdItem);
         this.createdItem ='';
       }
+      // this.new = false;
     }
     else{
       this.new = true;
     }
     this.loadData();
 
-    Keyboard.close();
+
     // Keyboard.close();
     //cordova.plugins.Keyboard.close();
   }
