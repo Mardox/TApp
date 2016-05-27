@@ -1,5 +1,5 @@
-import {Page,NavController,NavParams} from 'ionic-angular';
-import {Keyboard, LocalNotifications, Device} from 'ionic-native';
+import {Page,NavController,NavParams, Platform} from 'ionic-angular';
+import {Keyboard, LocalNotifications, Device, GoogleAnalytics} from 'ionic-native';
 import {NewItem} from '../newItem/newItem';
 import {IntroPage} from '../intro/intro';
 import {Service} from '../../providers/service/service';
@@ -17,7 +17,7 @@ export class HomePage {
   list;
   isAndroid;
 
-  constructor(public nav:NavController, public service:Service) {
+  constructor(public platform: Platform, public nav:NavController, public service:Service) {
     // this.item = 'test is viable';
     // this.items = [];
     this.nav = nav;
@@ -37,6 +37,9 @@ export class HomePage {
      this.isAndroid = true;
     // this.addText = 'Hi ' + Device.device.platform;
 
+    this.platform.ready().then(() => {
+      GoogleAnalytics.trackView("Home Page");
+    });
 
   }
 
@@ -56,6 +59,9 @@ export class HomePage {
 
   newItemFocus(){
     this.new = true;
+    this.platform.ready().then(() => {
+      GoogleAnalytics.trackView("Add Item Page");
+    });
   }
 
   newItemBlur(){
@@ -69,6 +75,9 @@ export class HomePage {
       this.list = false;
     }else {
       this.list = true;
+      this.platform.ready().then(() => {
+        GoogleAnalytics.trackView("List View Page");
+      });
     }
   }
 

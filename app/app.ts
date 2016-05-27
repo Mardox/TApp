@@ -1,5 +1,5 @@
 import {App, Platform} from 'ionic-angular';
-import {StatusBar, LocalNotifications, Device} from 'ionic-native';
+import {StatusBar, LocalNotifications, Device, GoogleAnalytics} from 'ionic-native';
 import {HomePage} from './pages/home/home';
 import {NewItem} from './pages/newItem/newItem';
 import {IntroPage} from './pages/intro/intro';
@@ -21,6 +21,8 @@ export class MyApp {
       // StatusBar.styleBlackTranslucent();
       // StatusBar.styleBlackOpaque();
 
+      //Initialize Google Analytics
+      GoogleAnalytics.startTrackerWithId("UA-49038013-23");
 
 
     });
