@@ -1,5 +1,5 @@
 import {App, Platform} from 'ionic-angular';
-import {StatusBar} from 'ionic-native';
+import {StatusBar, LocalNotifications, Device} from 'ionic-native';
 import {HomePage} from './pages/home/home';
 import {NewItem} from './pages/newItem/newItem';
 import {IntroPage} from './pages/intro/intro';
@@ -20,6 +20,9 @@ export class MyApp {
       StatusBar.styleDefault();
       // StatusBar.styleBlackTranslucent();
       // StatusBar.styleBlackOpaque();
+
+
+
     });
   }
 }

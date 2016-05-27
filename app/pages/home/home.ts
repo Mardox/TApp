@@ -1,5 +1,5 @@
 import {Page,NavController,NavParams} from 'ionic-angular';
-import {Keyboard} from 'ionic-native';
+import {Keyboard, LocalNotifications, Device} from 'ionic-native';
 import {NewItem} from '../newItem/newItem';
 import {IntroPage} from '../intro/intro';
 import {Service} from '../../providers/service/service';
@@ -12,8 +12,10 @@ export class HomePage {
   items = [];
   newItems = [];
   createdItem = '';
+  addText = 'Add One Above';
   new;
   list;
+  isAndroid;
 
   constructor(public nav:NavController, public service:Service) {
     // this.item = 'test is viable';
@@ -31,10 +33,25 @@ export class HomePage {
     //load the tasks data
     this.loadData();
 
-    // console.log();
+    console.log(Device.device);
+    if (Device.device.platform == 'Android')
+     this.isAndroid == true;
+    // this.addText = 'Hi ' + Device.device.platform;
 
 
+  }
 
+
+  pushNotification(){
+    LocalNotifications.schedule({
+      title: "You ARe Falling Behind",
+       text: "It's been 3 hours since your last task!",
+       icon: "http://sciactive.com/pnotify/includes/github-icon.png",
+       at: new Date(new Date().getTime() + 30000),
+       sound: this.isAndroid ? 'file://sound.mp3' : 'file://beep.caf'
+    });
+
+    // at: new Date(new Date().getTime() + 10800000),
   }
 
   newItemFocus(){
@@ -109,6 +126,7 @@ export class HomePage {
   }
 
   deferItem(item){
+    this.pushNotification();
     this.service.deferItem(item).then((todos) => {
       this.items = JSON.parse(todos) || [];
       this.list = false;
@@ -118,12 +136,12 @@ export class HomePage {
 
   addItem(){
     if (this.createdItem){
-      if (this.createdItem){
-        this.service.save(this.createdItem);
-        this.newItems.push(this.createdItem);
-        this.createdItem ='';
-      }
-      // this.new = false;
+      this.service.save(this.createdItem);
+      this.newItems.push(this.createdItem);
+      this.createdItem ='';
+      // if(this.new == true){
+      //   this.new = false;
+      // }
     }
     else{
       this.new = true;
