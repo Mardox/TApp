@@ -1,8 +1,9 @@
 <ion-navbar *navbar primary>
   <ion-title>
-    <h3 class="center" [hidden]="new || !items[0]">{{items.length}} Remaining</h3>
+    <h3 class="center" [hidden]="list || new || !items[0]">{{items.length}} Remaining</h3>
     <!-- <h3 class="center" [hidden]="!new">New Task Is...</h3> -->
-    <h3 class="center" [hidden]="new || items[0]">All Done</h3>
+    <h3 class="center" [hidden]="list || new || items[0]">All Done</h3>
+    <h3 class="center" [hidden]="!list">List</h3>
   </ion-title>
   <ion-buttons end>
     <button (click)="listView();" [hidden]="new">
@@ -42,11 +43,19 @@
     </ion-item-sliding>
   </ion-list>
 
-  <ion-row padding center [hidden]="list">
+  <ion-row padding center [hidden]="">
       <ion-col>
-          <b><h1 class="center" [hidden]="new || !items[0]" [hidden]="new">{{items[0]}}</h1></b>
-          <h1 class="center" [hidden]="new || items[0]">NO MORE TASKS</h1>
-          <h3 class="center" [hidden]="new || items[0]">{{addText}}</h3>
+          <b><h1 class="center" [hidden]="new || list || !items[0]" [hidden]="new">{{items[0]}}</h1></b>
+
+          <h1 class="center" [hidden]="new || items[0]">NO TASKS</h1>
+
+
+          <h3 class="center" [hidden]="new || list || items[0]">{{addText}}</h3>
+      </ion-col>
+  </ion-row>
+
+  <ion-row padding center [hidden]="!list">
+      <ion-col>
       </ion-col>
   </ion-row>
 
