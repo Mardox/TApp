@@ -33,7 +33,8 @@
     "cordova-plugin-console",
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard",
-    "de.appplant.cordova.plugin.local-notification"
+    "de.appplant.cordova.plugin.local-notification",
+    "cordova-plugin-google-analytics"
   ],
   "cordovaPlatforms": [
     "ios",
