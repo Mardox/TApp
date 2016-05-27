@@ -73,6 +73,9 @@ export class HomePage {
   listView(){
     if (this.list){
       this.list = false;
+      this.platform.ready().then(() => {
+        GoogleAnalytics.trackView("Home Page");
+      });
     }else {
       this.list = true;
       this.platform.ready().then(() => {
@@ -156,8 +159,13 @@ export class HomePage {
     }
     else{
       this.new = true;
+      Keyboard.close();
     }
     this.loadData();
+
+    this.platform.ready().then(() => {
+      GoogleAnalytics.trackEvent("Task","Add","New Task");
+    });
 
 
     // Keyboard.close();

@@ -1,0 +1,40 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "ToDoApp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "ToDoApp"
+        },
+        "cordova-plugin-google-analytics": {
+            "PACKAGE_NAME": "ToDoApp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "ToDoApp"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "ToDoApp"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "ToDoApp"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "ToDoApp"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "ToDoApp"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "ToDoApp"
+        }
+    }
+}
