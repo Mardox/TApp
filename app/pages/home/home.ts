@@ -32,10 +32,9 @@ export class HomePage {
 
     //load the tasks data
     this.loadData();
-
-    console.log(Device.device);
+    
     if (Device.device.platform == 'Android')
-     this.isAndroid == true;
+     this.isAndroid = true;
     // this.addText = 'Hi ' + Device.device.platform;
 
 
@@ -44,14 +43,15 @@ export class HomePage {
 
   pushNotification(){
     LocalNotifications.schedule({
-      title: "You ARe Falling Behind",
+      id: 1,
+      title: "You Are Falling Behind",
        text: "It's been 3 hours since your last task!",
+       at: new Date(new Date().getTime() + 10800000),
        icon: "http://sciactive.com/pnotify/includes/github-icon.png",
-       at: new Date(new Date().getTime() + 30000),
-       sound: this.isAndroid ? 'file://sound.mp3' : 'file://beep.caf'
+       sound: this.isAndroid ? 'file://files/jingle-bells-sms.mp3' : 'file://files/jingle-bells-sms.m4r'
     });
 
-    // at: new Date(new Date().getTime() + 10800000),
+    // at: new Date(new Date().getTime() + 30000),
   }
 
   newItemFocus(){
