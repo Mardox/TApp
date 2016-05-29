@@ -36,7 +36,7 @@ export class IntroPage {
   }
 
   goHomePage(){
-    this.nav.pop();
+    this.nav.setRoot(HomePage);
   }
 
 }

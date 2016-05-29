@@ -1,7 +1,7 @@
 import {Page,NavController,NavParams, Platform} from 'ionic-angular';
 import {Keyboard, LocalNotifications, Device, GoogleAnalytics} from 'ionic-native';
-import {NewItem} from '../newItem/newItem';
 import {IntroPage} from '../intro/intro';
+import {SettingsPage} from '../settings/settings';
 import {Service} from '../../providers/service/service';
 
 @Page({
@@ -16,6 +16,9 @@ export class HomePage {
   new;
   list;
   isAndroid;
+  notificationStateValue;
+  notificationDelayValue;
+  notificationDelayValueMilliseconds;
 
   constructor(public platform: Platform, public nav:NavController, public service:Service) {
     // this.item = 'test is viable';
@@ -28,7 +31,7 @@ export class HomePage {
     // this.nav.setRoot(IntroPage);
 
     //show the intro of the App
-    this.showIntro();
+    this.initializeTheApp();
 
     //load the tasks data
     this.loadData();
@@ -45,14 +48,22 @@ export class HomePage {
 
 
   pushNotification(){
-    LocalNotifications.schedule({
-      id: 1,
-      title: "You Are Falling Behind",
-       text: "It's been 3 hours since your last task!",
-       at: new Date(new Date().getTime() + 30000),
-       icon: "http://sciactive.com/pnotify/includes/github-icon.png",
-       sound: this.isAndroid ? 'file://files/jingle-bells-sms.mp3' : 'file://files/jingle-bells-sms.m4r'
-    });
+    this.notificationStateValue = localStorage.getItem('notificationState');
+    if (this.notificationStateValue == "true"){
+
+      this.notificationDelayValue = localStorage.getItem('notificationDelay');
+      this.notificationDelayValueMilliseconds = (this.notificationDelayValue * 3600000);
+
+      LocalNotifications.schedule({
+        id: 1,
+        title: this.items[0],
+         text: "It's been "+this.notificationDelayValue+" hours since you started!",
+         at: new Date(new Date().getTime() + this.notificationDelayValueMilliseconds),
+         icon: "http://sciactive.com/pnotify/includes/github-icon.png",
+         sound: this.isAndroid ? 'file://files/jingle-bells-sms.mp3' : 'file://files/jingle-bells-sms.m4r'
+      });
+
+    }
 
     // at: new Date(new Date().getTime() + 10800000),
   }
@@ -85,12 +96,15 @@ export class HomePage {
   }
 
 
-  showIntro(){
+  initializeTheApp(){
 
     var firstTime = localStorage.getItem('firstTime');
     if (firstTime === null) {
-      console.log('was null setting to false');
       firstTime = 'true';
+      //Turn on the notification
+      localStorage.setItem('notificationState', 'true');
+      //Set the notification Delay
+      localStorage.setItem('notificationDelay', '3');
     }
 
     //adding demo tasks and the intro pages
@@ -191,6 +205,14 @@ export class HomePage {
   //     this.items = JSON.parse(todos) || [];
   //   });
   // }
+
+  swipeList(event){
+    this.listView();
+  }
+
+  settingsPage(){
+    this.nav.push(SettingsPage);
+  }
 
 
 }

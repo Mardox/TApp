@@ -1,9 +1,12 @@
 <ion-navbar *navbar primary>
+  <!-- <button menuToggle>
+    <ion-icon name='menu'></ion-icon>
+  </button> -->
   <ion-title>
     <h3 class="center" [hidden]="list || new || !items[0]">{{items.length}} Remaining</h3>
     <!-- <h3 class="center" [hidden]="!new">New Task Is...</h3> -->
     <h3 class="center" [hidden]="list || new || items[0]">All Done</h3>
-    <h3 class="center" [hidden]="!list">List</h3>
+    <!-- <h3 class="center" [hidden]="!list">Details</h3> -->
   </ion-title>
   <ion-buttons end>
     <button (click)="listView();" [hidden]="new">
@@ -11,6 +14,8 @@
     </button>
   </ion-buttons>
 </ion-navbar>
+
+
 
 <ion-content class="home">
   <ion-item [hidden]="list">
@@ -23,26 +28,40 @@
     <!-- (blur)="addItem();"
     (click)="newItemFocus();" -->
   </ion-item>
-  <ion-list >
+  <ion-list *ngIf="list" (swipe)="swipeList($event)">
     <!-- <ion-item-sliding [hidden]="!list" *ngFor="let item of items"> -->
-      <ion-item [hidden]="!list" *ngFor="let item of items" >
+      <ion-item-divider light>Your Tasks</ion-item-divider>
+      <ion-item [hidden]="items[0]">
+        No Tasks
+      </ion-item>
+      <ion-item *ngFor="let item of items" >
         <ion-label (click)="selectItem(item);">
           {{item}}
         </ion-label>
         <ion-icon (click)="deleteItem(item)" name="trash" danger item-right></ion-icon>
+      </ion-item>
+      <ion-item-divider  light>More</ion-item-divider>
+      <ion-item (click)="settingsPage();">
+        Settings
+      </ion-item>
+      <ion-item (click)="helpPage();">
+        Need Help
       </ion-item>
       <!-- <ion-item-options>
         <button danger (click)="deleteItem(item)"><ion-icon name="trash"></ion-icon> Delete </button>
       </ion-item-options> -->
     <!-- </ion-item-sliding> -->
 
+  </ion-list>
 
-      <ion-item  (click)="selectItem(newItem);" [hidden]="!new" *ngFor="let newItem of newItems">
+
+  <ion-list *ngIf="new">
+      <ion-item  (click)="selectItem(newItem);"  *ngFor="let newItem of newItems">
         <span danger >Just Added:</span> {{newItem}}
       </ion-item>
   </ion-list>
 
-  <ion-row padding center [hidden]="" (click)="listView();">
+  <ion-row padding center [hidden]="new || list" (click)="listView();">
       <ion-col>
         <!-- <ion-slides pager>
          <ion-slide *ngFor="let item of items">
@@ -50,12 +69,12 @@
          </ion-slide>
        </ion-slides> -->
 
-          <b><h1 class="center" [hidden]="new || list || !items[0]" [hidden]="new">{{items[0]}}</h1></b>
+          <b><h1 class="center" *ngIf="items[0]">{{items[0]}}</h1></b>
 
-          <h1 class="center" [hidden]="new || items[0]">NO TASKS</h1>
+          <h1 class="center" *ngIf="!items[0]">NO TASKS</h1>
 
 
-          <h3 class="center" [hidden]="new || list || items[0]">{{addText}}</h3>
+          <h3 class="center" *ngIf="!items[0]">{{addText}}</h3>
       </ion-col>
   </ion-row>
 
@@ -84,7 +103,7 @@
       The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
     </ion-card-content>
   </ion-card> -->
-
+<div *ngIf="!new || !list" >
   <button [hidden]="list || !items[0] || new" danger fab fab-bottom fab-left  (click)="deferItem(items[0]);">
    <ion-icon name="time" is-active="true" ></ion-icon>
   </button>
@@ -93,6 +112,7 @@
    <ion-icon name="checkmark" is-active="false" ></ion-icon>
  </button>
 
+</div>
   <!-- <button [hidden]="new" fab danger fab-bottom fab-right (click)="addItem();">
     <ion-icon name="add" is-active="false"></ion-icon>
   </button> -->
