@@ -1,5 +1,5 @@
-import {Page, NavController} from 'ionic-angular';
-
+import {Page, NavController, Platform} from 'ionic-angular';
+import {GoogleAnalytics} from 'ionic-native';
 /*
   Generated class for the SettingsPage page.
 
@@ -14,7 +14,11 @@ export class SettingsPage {
   notificationStateValue;
   notificationDelayValue;
 
-  constructor(public nav: NavController) {
+  constructor(public nav: NavController, public platform:Platform) {
+
+    this.platform.ready().then(() => {
+      GoogleAnalytics.trackView("Settings Page");
+    });
 
     this.notificationStateValue = localStorage.getItem('notificationState');
     if (this.notificationStateValue == "true")

@@ -2,6 +2,7 @@ import {Page,NavController,NavParams, Platform} from 'ionic-angular';
 import {Keyboard, LocalNotifications, Device, GoogleAnalytics} from 'ionic-native';
 import {IntroPage} from '../intro/intro';
 import {SettingsPage} from '../settings/settings';
+import {HelpPage} from '../help/help';
 import {Service} from '../../providers/service/service';
 
 @Page({
@@ -214,6 +215,10 @@ export class HomePage {
 
   settingsPage(){
     this.nav.push(SettingsPage);
+  }
+
+  helpPage(){
+    this.nav.push(HelpPage);
   }
 
 

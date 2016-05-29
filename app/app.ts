@@ -4,6 +4,7 @@ import {StatusBar, LocalNotifications, Device, GoogleAnalytics} from 'ionic-nati
 import {HomePage} from './pages/home/home';
 import {IntroPage} from './pages/intro/intro';
 import {SettingsPage} from './pages/settings/settings';
+import {HelpPage} from './pages/help/help';
 import {Service} from './providers/service/service';
 
 @App({
