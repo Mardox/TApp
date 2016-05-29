@@ -45,6 +45,12 @@
 
   <ion-row padding center [hidden]="">
       <ion-col>
+        <!-- <ion-slides pager>
+         <ion-slide *ngFor="let item of items">
+           <h2 class="slide-title" [innerHTML]="item"></h2>
+         </ion-slide>
+       </ion-slides> -->
+
           <b><h1 class="center" [hidden]="new || list || !items[0]" [hidden]="new">{{items[0]}}</h1></b>
 
           <h1 class="center" [hidden]="new || items[0]">NO TASKS</h1>

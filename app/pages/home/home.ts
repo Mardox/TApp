@@ -129,6 +129,7 @@ export class HomePage {
   doneItem(item){
     this.service.remove(item).then((todos) => {
       this.items = JSON.parse(todos) || [];
+      this.pushNotification();
     });
   }
 
@@ -167,6 +168,9 @@ export class HomePage {
       GoogleAnalytics.trackEvent("Task","Add","New Task");
     });
 
+    if(this.items.length == 1){
+      this.pushNotification();
+    }
 
     // Keyboard.close();
     //cordova.plugins.Keyboard.close();
