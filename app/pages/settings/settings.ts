@@ -13,6 +13,7 @@ export class SettingsPage {
   notificationState = true;
   notificationStateValue;
   notificationDelayValue;
+
   constructor(public nav: NavController) {
 
     this.notificationStateValue = localStorage.getItem('notificationState');

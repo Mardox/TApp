@@ -63,6 +63,8 @@ export class HomePage {
          sound: this.isAndroid ? 'file://files/jingle-bells-sms.mp3' : 'file://files/jingle-bells-sms.m4r'
       });
 
+      console.log("Notification Set");
+
     }
 
     // at: new Date(new Date().getTime() + 10800000),
@@ -191,7 +193,7 @@ export class HomePage {
       GoogleAnalytics.trackEvent("Task","Add","New Task");
     });
 
-    if(this.items.length == 1){
+    if(this.items.length == 0){
       this.pushNotification();
     }
 

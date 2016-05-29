@@ -17,7 +17,7 @@
 
 
 
-<ion-content class="home">
+<ion-content class="home" (swipe)="swipeList($event)">
   <ion-item [hidden]="list">
     <ion-input placeholder="Tap Here To Add a Task"
       (keyup.enter)="addItem();"
@@ -28,7 +28,7 @@
     <!-- (blur)="addItem();"
     (click)="newItemFocus();" -->
   </ion-item>
-  <ion-list *ngIf="list" (swipe)="swipeList($event)">
+  <ion-list *ngIf="list" >
     <!-- <ion-item-sliding [hidden]="!list" *ngFor="let item of items"> -->
       <ion-item-divider light>Your Tasks</ion-item-divider>
       <ion-item [hidden]="items[0]">
