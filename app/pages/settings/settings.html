@@ -17,9 +17,9 @@
       <ion-toggle [(ngModel)]="notificationState" (click)="notificationToggle();" ></ion-toggle>
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="notificationState">
       <ion-label floating>Notification Delay (Hours)</ion-label>
-      <ion-input type="text" [(ngModel)]="notificationDelayValue" (blur)="notificationDelay();"></ion-input>
+      <ion-input type="number" [(ngModel)]="notificationDelayValue" (blur)="notificationDelay();"></ion-input>
     </ion-item>
 
 
