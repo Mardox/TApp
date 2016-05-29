@@ -133,6 +133,13 @@ export class HomePage {
     });
   }
 
+  deleteItem(item){
+    this.service.remove(item).then((todos) => {
+      this.items = JSON.parse(todos) || [];
+      // this.pushNotification();
+    });
+  }
+
   selectItem(item){
     this.service.selectItem(item).then((todos) => {
       this.items = JSON.parse(todos) || [];
@@ -159,9 +166,11 @@ export class HomePage {
       // }
     }
     else{
-      this.new = true;
+      this.new = false;
       Keyboard.close();
     }
+
+
     this.loadData();
 
     this.platform.ready().then(() => {
